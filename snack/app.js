@@ -161,7 +161,7 @@ const style = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     maginBottom: 10,
-    marginTop: 20,
+    marginTop: 3,
     color: '#0077b6',
   },
   titleprodutos:{
@@ -202,4 +202,5 @@ const style = StyleSheet.create({
     borderRadius: 5,
   },
 })
+
 

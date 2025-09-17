@@ -78,7 +78,7 @@ const {totalitens, totalvalor} = resumo(); // Calcula o resumo
                 onPress={() => adicionarAoCarrinho(item)}
               />
             </View>
-          )}
+          )};
         />
         {/* Resumo do Carrinho */}
         <View style={style.carrinho}>
@@ -103,7 +103,7 @@ const {totalitens, totalvalor} = resumo(); // Calcula o resumo
         </View>
     </View>
   )
-}
+};
 // Produto do dia (pode mudar manualmente)
 const produtoDoDia = {
   id: '2', nome: 'Guaraná', preco: 10

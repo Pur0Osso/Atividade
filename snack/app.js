@@ -103,21 +103,22 @@ const {totalitens, totalvalor} = resumo(); // Calcula o resumo
         </View>
     </View>
   )
-};
+}
 
 // Lista de produtos do mercadinho (array de objetos)
 const produtos = [
-  { id: '1', nome: 'Guaraná', preco: 10},
+  { id: '1', nome: 'Guaraná', preco: 10} , 
   { id: '2', nome: 'Alface', preco: 31.67 },
   { id: '3', nome: 'Pão de forma', preco: 10},
   { id: '4', nome: 'Arroz 1kg', preco: 18.99 },
   { id: '5', nome: 'Feijão 1kg', preco: 15 },
   { id: '6', nome: 'Bolinho ana Maria', preco: 4.0 },
-  { id: '7', nome: 'Sucrilhos', preco: 17.90 },  
+  { id: '7', nome: 'Sucrilhos', preco: 17.90 },
 ];
 
 //Escolhe o produto do dia aleatoriamente
-const randomIndex = Math.Floor(Math.random() * produtos.length);
+const randomIndex = Math.floor(Math.random() * produtos.length);
+
 const produtoDoDia = produtos[randomIndex];
 
 // Estilos para o layout do app
@@ -203,7 +204,3 @@ const style = StyleSheet.create({
     borderRadius: 5,
   },
 })
-
-
-
-

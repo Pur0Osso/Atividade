@@ -78,7 +78,7 @@ const {totalitens, totalvalor} = resumo(); // Calcula o resumo
                 onPress={() => adicionarAoCarrinho(item)}
               />
             </View>
-          )};
+          )}
         />
         {/* Resumo do Carrinho */}
         <View style={style.carrinho}>
@@ -202,5 +202,6 @@ const style = StyleSheet.create({
     borderRadius: 5,
   },
 })
+
 
 

@@ -16,7 +16,7 @@ um exercício da faculdade bem simples, onde o intuito é criar um aplicativo b�
 ---
 ## Como funciona?
 
-O aplicativo consiste basicamente no usuário olhar os produtos que mais lhe interassa, e ficar atento ao produtodo do dia. Caso o usário goste de um produto ele pode clicar no botão 'Adicionar' do lado do produto caso queira compra-lo.
+O aplicativo consiste basicamente no usuário olhar os produtos que mais lhe interessa, e ficar atento ao produtodo do dia. Caso o usário goste de um produto ele pode clicar no botão 'Adicionar' do lado do produto caso queira compra-lo.
 Se o usuário repensar, e chegar a conclusão que não está satisfeito com o produto, ele consegue clicar no botão 'remover' no resumo, e o item não irá mais aparecer em seu carrinho.
 Ao terminar a escolha de seus itens, no campo inferior estará aparecendo o resumo dos produtos que ele quer comprar.
 

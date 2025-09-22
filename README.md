@@ -20,5 +20,6 @@ um exercício da faculdade bem simples, onde o intuito é criar um aplicativo b�
 - adicionar um sistema de busca.
 - implementar fotos para os produtos.
 - introduzir um sistema de promoção.
+- melhorar o layout do carrinho.
 
 ---

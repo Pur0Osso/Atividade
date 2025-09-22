@@ -2,6 +2,8 @@ import React, {useState} from 'react'
 import {View, Text, Button, TouchableOpacity, StyleSheet, FlatList} from 'react-native'
 
 export default function App(){
+  alert('Bem vindo ao Mercadinho de Madureira!');
+
   // Estado para armazenar o carrinho. Ex: { '1': { produto: {}, quantidade: 2 } }
   const [carrinho, setCarrinho] = useState({});
 // Função para adicionar produto ao carrinho
@@ -104,10 +106,6 @@ const {totalitens, totalvalor} = resumo(); // Calcula o resumo
     </View>
   )
 }
-// Produto do dia (pode mudar manualmente)
-const produtoDoDia = {
-  id: '2', nome: 'Guaraná', preco: 10
-};
 
 // Lista de produtos do mercadinho (array de objetos)
 const produtos = [
@@ -116,8 +114,13 @@ const produtos = [
   { id: '3', nome: 'Arroz 1kg', preco: 18.99 },
   { id: '4', nome: 'Feijão 1kg', preco: 15 },
   { id: '5', nome: 'Bolinho ana Maria', preco: 4.0 },
-  { id: '6', nome: 'Sucrilhos', preco: 17.90 },  
+  { id: '6', nome: 'Sucrilhos', preco: 17.90 },
+  { id: '7', nome: 'Guaraná', preco: 10} , 
 ];
+
+const randomIndex = Math.floor(Math.random() * produtos.length);
+
+const produtoDoDia = produtos[randomIndex];
 
 // Estilos para o layout do app
 const style = StyleSheet.create({
@@ -161,7 +164,7 @@ const style = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     maginBottom: 10,
-    marginTop: 20,
+    marginTop: 3,
     color: '#0077b6',
   },
   titleprodutos:{

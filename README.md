@@ -27,6 +27,6 @@ Ao terminar a escolha de seus itens, no campo inferior estará aparecendo o resu
 - adicionar um sistema de busca.
 - implementar fotos para os produtos.
 - introduzir um sistema de promoção.
-- melhorar o layout do carrinho, e sua fincionalidade.
+- melhorar o layout do carrinho, e sua funcionalidade.
 
 ---

@@ -198,6 +198,7 @@ const style = StyleSheet.create({
   titleprodutos: {
     fontSize: 16,
     padding: 5,
+    gap: 25,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
@@ -246,3 +247,4 @@ const style = StyleSheet.create({
   textAlign: 'center',
 },
 });
+

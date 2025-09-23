@@ -2,8 +2,6 @@ import React, {useState} from 'react'
 import {View, Text, Button, TouchableOpacity, StyleSheet, FlatList} from 'react-native'
 
 export default function App(){
-  alert('Bem vindo ao Mercadinho de Madureira!');
-
   // Estado para armazenar o carrinho. Ex: { '1': { produto: {}, quantidade: 2 } }
   const [carrinho, setCarrinho] = useState({});
 // Função para adicionar produto ao carrinho

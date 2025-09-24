@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {
   View,
   Text,
-  Button,
+  Image,
   TouchableOpacity,
   StyleSheet,
   FlatList,
@@ -67,14 +67,13 @@ export default function App() {
             <Text style={style.ptitle}> Produto do Dia </Text>
             <Text style={style.guaraná}> {produtoDoDia.nome} </Text>
             <Text style={style.preço}>
-              {' '}
-              R$ {produtoDoDia.preco.toFixed(2)}{' '}
+              R$ {produtoDoDia.preco.toFixed(2)}
             </Text>
-        <TouchableOpacity
-          style={style.botaoadicionar}
-          onPress={() => adicionarAoCarrinho(produtoDoDia)}>
-          <Text style={style.title}>adicionar</Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+            style={style.botaoadicionar}
+            onPress={() => adicionarAoCarrinho(produtoDoDia)}>
+            <Text style={style.title}>adicionar</Text>
+          </TouchableOpacity>
         </View>
           {/* Lista de produtos normais */}
           <Text style={style.listatitle}>Lista de Produtos: </Text>
@@ -83,6 +82,16 @@ export default function App() {
             keyExtractor={(item) => item.id}
             renderItem={({ item }) => (
             <View style={style.titleprodutos}>
+            <Image
+              style={style.produtoImg}
+              source={
+              item.foto && item.foto.trim() !== ''
+                ? { uri: item.foto }
+                : {
+                  uri: 'https://t3.ftcdn.net/jpg/10/34/39/40/360_F_1034394041_F0TwFmDeWtjn3XXtrNjeBB7SYYfvJz6n.jpg',
+                      }
+                }
+              />
               <Text style={style.produtos}>
                 {item.nome} - R$ {item.preco.toFixed(2)}
               </Text>
@@ -107,26 +116,25 @@ export default function App() {
               Object.values(carrinho).map(({ produto, quantidade }) => (
                 <View key={produto.id} style={style.carrinhoItem}>
                   <Text key={produto.id}>
-                    {' '}
-                    {produto.nome} (x{quantidade}) - R${' '}
+                    
+                    {produto.nome} (x{quantidade}) - R$
                     {(produto.preco * quantidade).toFixed(2)}
                   </Text>
                   <TouchableOpacity
                     onPress={() => removerCarrinho(produto.id)}
                     style={style.botaoRemover}>
-                    {' '}
-                    <Text> Remover </Text>{' '}
+                    
+                    <Text> X </Text>
                   </TouchableOpacity>
                 </View>
               ))
             )}
             {/* Exibe totais */}
             <Text style={style.total}>
-              {' '}
-              quantidade de protudos: {totalitens}{' '}
+              quantidade de protudos: {totalitens}
             </Text>
             <Text style={style.total}>
-              valor total: {totalvalor.toFixed(2)}{' '}
+              valor total: {totalvalor.toFixed(2)}
             </Text>
           </View>
         </View>
@@ -137,13 +145,41 @@ export default function App() {
 
 // Lista de produtos do mercadinho (array de objetos)
 const produtos = [
-  { id: '1', nome: 'Guaraná', preco: 10 },
-  { id: '2', nome: 'Alface', preco: 31.67 },
-  { id: '3', nome: 'Pão de forma', preco: 10 },
-  { id: '4', nome: 'Arroz 1kg', preco: 18.99 },
-  { id: '5', nome: 'Feijão 1kg', preco: 15 },
-  { id: '6', nome: 'Bolinho ana Maria', preco: 4.0 },
-  { id: '7', nome: 'Sucrilhos', preco: 17.9 },
+  { id: '1', 
+  nome: 'Guaraná', 
+  preco: 10,
+  foto: 'https://images.tcdn.com.br/img/img_prod/1086086/180_refrigerante_guarana_antarctica_lata_350ml_365_1_9564261f1096642556780e150602b4ad.jpg'
+  },
+  { id: '2', 
+  nome: 'Alface', 
+  preco: 31.67,
+  foto: 'https://i0.wp.com/safraviva.com.br/wp-content/uploads/alface-repolhuda-lisa-2.jpg?resize=768%2C768&ssl=1'
+  },
+  { id: '3', 
+  nome: 'Pão de forma', 
+  preco: 10,
+  foto: 'https://www.diaspanificacao.com.br/wp-content/uploads/2017/10/foto_produto_03.jpg'
+  },
+  { id: '4', 
+  nome: 'Arroz 1kg', 
+  preco: 18.99,
+  foto: 'https://tse1.mm.bing.net/th/id/OIP.HwB4POYXsxPCQQ4sbeV0JAHaHa?rs=1&pid=ImgDetMain&o=7&rm=3'
+  },
+  { id: '5', 
+  nome: 'Feijão 1kg', 
+  preco: 15,
+  foto: 'https://bompreco.vtexassets.com/arquivos/ids/156960/FeijaoPretoTipo1Kicaldo1Kg.jpg?v=637460781401600000'
+  },
+  { id: '6', 
+  nome: 'Bolinho ana Maria', 
+  preco: 4.0,
+  foto: 'https://www.bolinhosanamaria.com.br/wp-content/themes/ana-maria/images/bolinhos/bolinhos-2_033_new.png'
+  },
+  { id: '7', 
+  nome: 'Sucrilhos', 
+  preco: 17.9,
+  foto: 'https://tse2.mm.bing.net/th/id/OIP.PIXR8LOcdhN-hpkZJVTMnQHaHa?rs=1&pid=ImgDetMain&o=7&rm=3'
+  },
 ];
 
 //Escolhe o produto do dia aleatoriamente
@@ -152,7 +188,7 @@ const produtoDoDia = produtos[randomIndex];
 
 // Estilos para o layout do app
 const style = StyleSheet.create({
-  
+
   container: {
     flex: 1,
     padding: 10,
@@ -189,13 +225,7 @@ const style = StyleSheet.create({
     fontSize: 16,
     marginBottom: 10,
   },
-  listatitle:{
-    fontSize: 18,
-    fontWeight: 'bold',
-    maginBottom: 10,
-    marginTop: 3,
-    color: '#0077b6',
-
+  
   listatitle: {
   fontSize: 18,
   fontWeight: 'bold',
@@ -206,12 +236,17 @@ const style = StyleSheet.create({
   titleprodutos: {
     fontSize: 16,
     padding: 5,
-    gap: 25,
-    flexDirection:'row',
-    justifyContent: 'space-between'
+    gap: 5,
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   produtos: {
     fontSize: 15,
+  },
+  produtoImg: {
+    height: 130,
+    width: 120,
+    borderRadius: 10,
   },
   carrinho: {
   backgroundColor: '#90e0ef',
@@ -254,6 +289,4 @@ const style = StyleSheet.create({
   color: '#fff', 
   textAlign: 'center',
 },
-}
-}); 
-
+});

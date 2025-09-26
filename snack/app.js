@@ -13,17 +13,27 @@ export default function App() {
   // Estado para armazenar o carrinho. Ex: { '1': { produto: {}, quantidade: 2 } }
   const [carrinho, setCarrinho] = useState({});
   // Função para adicionar produto ao carrinho
-  const adicionarAoCarrinho = (produto) => {
-    setCarrinho((prev) => {
-      const atual = { ...prev }; // Copia o carrinho anterior
-      if (atual[produto.id]) {
-        atual[produto.id].quantidade += 1; // Se já tem o produto, aumenta a quantidade
-      } else {
-        atual[produto.id] = { produto, quantidade: 1 };
-      }
-      return atual;
-    });
-  };
+const adicionarAoCarrinho = (produto) => {
+  setCarrinho((prev) => {
+    const atual = { ...prev }; // Copia o carrinho anterior
+    
+    // Verifica se é o produto do dia
+    const isProdutoDoDia = produto.id === produtoDoDia.id;
+
+    const produtoComPreco = {
+      ...produto,
+      preco: isProdutoDoDia ? produto.desconto : produto.preco, // Define o preço baseado no produto do dia
+    };
+
+    if (atual[produto.id]) {
+      atual[produto.id].quantidade += 1; // Incrementa a quantidade
+    } else {
+      atual[produto.id] = { produto: produtoComPreco, quantidade: 1 }; // Adiciona o produto ao carrinho
+    }
+
+    return atual;
+  });
+};
   // Função para remover 1 unidade de um produto do carrinho
   const removerCarrinho = (produtoId) => {
     setCarrinho((prev) => {
@@ -67,9 +77,10 @@ export default function App() {
             <Text style={style.ptitle}> Produto do Dia </Text>
             <Text style={style.guaraná}> {produtoDoDia.nome} </Text>
             <Text style={style.preço}>
-              R$ {produtoDoDia.preco.toFixed(2)}
+              R$ {produtoDoDia.desconto.toFixed(2)}
             </Text>
           <TouchableOpacity
+            key={produtoDoDia.id}
             style={style.botaoadicionar}
             onPress={() => adicionarAoCarrinho(produtoDoDia)}>
             <Text style={style.title}>adicionar</Text>
@@ -112,11 +123,10 @@ export default function App() {
             {Object.values(carrinho).length === 0 ? (
               <Text> Seu carrinho está vazio.</Text>
             ) : (
-              // Se houver produtos, lista eles com botão de remover
-              Object.values(carrinho).map(({ produto, quantidade }) => (
+              // Se houver produtos, lista eles com botão de remover. Se o produto tiver desconto, mostra o desconto ao invés da quantidade
+              Object.values(carrinho).map(({ produto, quantidade}) => (
                 <View key={produto.id} style={style.carrinhoItem}>
                   <Text key={produto.id}>
-                    
                     {produto.nome} (x{quantidade}) - R$
                     {(produto.preco * quantidade).toFixed(2)}
                   </Text>
@@ -148,37 +158,44 @@ const produtos = [
   { id: '1', 
   nome: 'Guaraná', 
   preco: 10,
-  foto: 'https://images.tcdn.com.br/img/img_prod/1086086/180_refrigerante_guarana_antarctica_lata_350ml_365_1_9564261f1096642556780e150602b4ad.jpg'
+  foto: 'https://images.tcdn.com.br/img/img_prod/1086086/180_refrigerante_guarana_antarctica_lata_350ml_365_1_9564261f1096642556780e150602b4ad.jpg',
+  desconto: 5,
   },
   { id: '2', 
   nome: 'Alface', 
   preco: 31.67,
-  foto: 'https://i0.wp.com/safraviva.com.br/wp-content/uploads/alface-repolhuda-lisa-2.jpg?resize=768%2C768&ssl=1'
+  foto: 'https://i0.wp.com/safraviva.com.br/wp-content/uploads/alface-repolhuda-lisa-2.jpg?resize=768%2C768&ssl=1',
+  desconto: 15.83,
   },
   { id: '3', 
   nome: 'Pão de forma', 
   preco: 10,
-  foto: 'https://www.diaspanificacao.com.br/wp-content/uploads/2017/10/foto_produto_03.jpg'
+  foto: 'https://www.diaspanificacao.com.br/wp-content/uploads/2017/10/foto_produto_03.jpg',
+  desconto: 5,
   },
   { id: '4', 
   nome: 'Arroz 1kg', 
   preco: 18.99,
-  foto: 'https://tse1.mm.bing.net/th/id/OIP.HwB4POYXsxPCQQ4sbeV0JAHaHa?rs=1&pid=ImgDetMain&o=7&rm=3'
+  foto: 'https://tse1.mm.bing.net/th/id/OIP.HwB4POYXsxPCQQ4sbeV0JAHaHa?rs=1&pid=ImgDetMain&o=7&rm=3',
+  desconto: 9.99,
   },
   { id: '5', 
   nome: 'Feijão 1kg', 
   preco: 15,
-  foto: 'https://bompreco.vtexassets.com/arquivos/ids/156960/FeijaoPretoTipo1Kicaldo1Kg.jpg?v=637460781401600000'
+  foto: 'https://bompreco.vtexassets.com/arquivos/ids/156960/FeijaoPretoTipo1Kicaldo1Kg.jpg?v=637460781401600000',
+  desconto: 7.5,
   },
   { id: '6', 
   nome: 'Bolinho ana Maria', 
   preco: 4.0,
-  foto: 'https://www.bolinhosanamaria.com.br/wp-content/themes/ana-maria/images/bolinhos/bolinhos-2_033_new.png'
+  foto: 'https://www.bolinhosanamaria.com.br/wp-content/themes/ana-maria/images/bolinhos/bolinhos-2_033_new.png',
+  desconto: 2.0,
   },
   { id: '7', 
   nome: 'Sucrilhos', 
   preco: 17.9,
-  foto: 'https://tse2.mm.bing.net/th/id/OIP.PIXR8LOcdhN-hpkZJVTMnQHaHa?rs=1&pid=ImgDetMain&o=7&rm=3'
+  foto: 'https://tse2.mm.bing.net/th/id/OIP.PIXR8LOcdhN-hpkZJVTMnQHaHa?rs=1&pid=ImgDetMain&o=7&rm=3',
+  desconto: 8.9,
   },
 ];
 

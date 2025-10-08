@@ -76,6 +76,16 @@ const adicionarAoCarrinho = (produto) => {
             <View style={style.produtoDia}>
             <Text style={style.ptitle}> Produto do Dia </Text>
             <Text style={style.guaraná}> {produtoDoDia.nome} </Text>
+            <Image
+              style={style.fotoDodia}
+              source={
+                produtoDoDia.fotoDodia && produtoDoDia.fotoDodia.trim() !== ''
+                  ? { uri: produtoDoDia.fotoDodia }
+                  : {
+                      uri: 'https://th.bing.com/th/id/OIP.m2WNeMN9cXBr5WHVu-3R5gHaGe?w=234&h=205&c=7&r=0&o=5&pid=1.7',
+                    }
+              }
+            />
             <Text style={style.preço}>
               R$ {produtoDoDia.desconto.toFixed(2)}
             </Text>
@@ -160,42 +170,49 @@ const produtos = [
   preco: 10,
   foto: 'https://images.tcdn.com.br/img/img_prod/1086086/180_refrigerante_guarana_antarctica_lata_350ml_365_1_9564261f1096642556780e150602b4ad.jpg',
   desconto: 5,
+  fotoDodia: 'https://th.bing.com/th/id/OIP.m2WNeMN9cXBr5WHVu-3R5gHaGe?w=234&h=205&c=7&r=0&o=5&pid=1.7',
   },
   { id: '2', 
   nome: 'Alface', 
   preco: 31.67,
   foto: 'https://i0.wp.com/safraviva.com.br/wp-content/uploads/alface-repolhuda-lisa-2.jpg?resize=768%2C768&ssl=1',
   desconto: 15.83,
+  fotoDodia: 'https://blog.unicpharma.com.br/wp-content/uploads/2024/07/pe-de-alface.jpg',
   },
   { id: '3', 
   nome: 'Pão de forma', 
   preco: 10,
   foto: 'https://www.diaspanificacao.com.br/wp-content/uploads/2017/10/foto_produto_03.jpg',
   desconto: 5,
+  fotoDodia: 'https://2.bp.blogspot.com/-JBbYrArM-qE/Uzdtuek4FpI/AAAAAAAAB8o/FkzH6sxnD24/s1600/03+-+p%C3%A3o+de+forma.jpg',
   },
   { id: '4', 
   nome: 'Arroz 1kg', 
   preco: 18.99,
   foto: 'https://tse1.mm.bing.net/th/id/OIP.HwB4POYXsxPCQQ4sbeV0JAHaHa?rs=1&pid=ImgDetMain&o=7&rm=3',
   desconto: 9.99,
+  fotoDodia: 'https://tse3.mm.bing.net/th/id/OIP.FZrHS6LgvCBOduAgpdCe9wHaEK?rs=1&pid=ImgDetMain&o=7&rm=3',
   },
   { id: '5', 
   nome: 'Feijão 1kg', 
   preco: 15,
   foto: 'https://bompreco.vtexassets.com/arquivos/ids/156960/FeijaoPretoTipo1Kicaldo1Kg.jpg?v=637460781401600000',
   desconto: 7.5,
+  fotoDodia: 'https://www.receitasedicasdochef.com.br/wp-content/uploads/2023/03/Como-Escolher-o-Feijao-Ideal-2.webp',
   },
   { id: '6', 
   nome: 'Bolinho ana Maria', 
   preco: 4.0,
   foto: 'https://www.bolinhosanamaria.com.br/wp-content/themes/ana-maria/images/bolinhos/bolinhos-2_033_new.png',
   desconto: 2.0,
+  fotoDodia: 'https://down-br.img.susercontent.com/file/dc6dcc471627efd849ad30dc8a4210d7',
   },
   { id: '7', 
   nome: 'Sucrilhos', 
   preco: 17.9,
   foto: 'https://tse2.mm.bing.net/th/id/OIP.PIXR8LOcdhN-hpkZJVTMnQHaHa?rs=1&pid=ImgDetMain&o=7&rm=3',
   desconto: 8.9,
+  fotoDodia: 'https://down-br.img.susercontent.com/file/sg-11134201-7rcdt-ltveuwfub9xy16',
   },
 ];
 
@@ -263,6 +280,11 @@ const style = StyleSheet.create({
   produtoImg: {
     height: 130,
     width: 120,
+    borderRadius: 10,
+  },
+  fotoDodia: {
+    height: 130,
+    width: 260,
     borderRadius: 10,
   },
   carrinho: {
